@@ -1,0 +1,42 @@
+<header class="header">
+    <div class="header__inner">
+        <div class="header__logo">
+            <%= link_to root_path do %>
+              <%= image_tag "logo.png", alt: "ロゴ", class: "logo" %>
+            <% end %>
+        </div>
+        <div class="header__left">
+            <ul class="header__headNav headNav">
+              <% if user_signed_in? %>
+                <li class="headNav__item"><%= link_to "新しい投稿", new_post_path, class: "" %></li>
+                <li class="headNav__item"><%= link_to "マイアカウント", edit_user_registration_path, class: "" %></li>
+                <li class="headNav__item"><%= link_to "外観", appearance_path, class: "" %></li>
+                <li class="headNav__item"><%= link_to "チャット一覧", rooms_path, class: "" %></li>
+                <li class="headNav__item"><%= link_to "いいね一覧", likes_path, class: "" %></li>
+                <li class="headNav__item"><%= link_to "ログアウト", destroy_user_session_path, :method => :delete, class: "btn btn-danger logout" %></li>
+              <% else %>
+                <li class="headNav__item"><%= link_to "ログイン", new_user_session_path, class: "btn btn-primary login" %></li>
+              <% end %>
+            </ul>
+        </div>
+        <button class="header__ham ham" id="js-ham">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <nav class="header__nav nav" id="js-nav">
+        <ul class="nav__items navItems">
+          <% if user_signed_in? %>
+            <li class="headNav__item"><%= link_to "新しい投稿", new_post_path, class: "" %></li>
+            <li class="headNav__item"><%= link_to "マイアカウント", edit_user_registration_path, class: "" %></li>
+            <li class="headNav__item"><%= link_to "外観", appearance_path, class: "" %></li>
+            <li class="headNav__item"><%= link_to "チャット一覧", rooms_path, class: "" %></li>
+            <li class="headNav__item"><%= link_to "いいね一覧", likes_path, class: "" %></li>
+            <li class="headNav__item"><%= link_to "ログアウト", destroy_user_session_path, :method => :delete, class: "" %></li>
+          <% else %>
+            <li class="headNav__item"><%= link_to "ログイン", new_user_session_path, class: "" %></li>
+          <% end %>
+        </ul>
+    </nav>
+</header>

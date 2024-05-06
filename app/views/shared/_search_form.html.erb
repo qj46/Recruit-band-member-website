@@ -1,0 +1,16 @@
+<%= search_form_for @q, url: dashboard_path do |f| %>
+   <div class="search">
+      
+      <div class="search__left">
+            <%= f.search_field :title_or_body_or_hashtags_cont, class: 'search__field', placeholder: '検索ワード' %>
+            <br class="sp-display">
+            <%= f.select :category_name_cont, options_for_select([["選択してください", ""]] + Category.search_options) %>
+      </div>
+
+      <div class="search__right">
+         <% sort_link(@q, :created_at, "日付順", class:'search__link') %>
+         <%= f.submit '検索', class: 'search__link' %>
+      </div>
+      
+   </div>
+<% end %>

@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+//pc
+@mixin pc(){
+    @media (min-width: 767px) {
+        @content;
+    }
+}
+
+// sp
+@mixin sp(){
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+// ipad
+@mixin ipad(){
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        @content;
+    }
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+html,h1,h2,h3,h4,h5,p,li,a,button,div{
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-family: 'ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+    overflow-wrap: break-word;
+}
+
+a{
+    text-decoration: unset;
+    transition: .3s;
+    cursor: pointer;
+    display: block;
+    color: #000;
+}
+
+img{
+    max-width: 100%;
+    width: 100%;
+    display: block;
+}
+
+hr {
+    border: solid 1px #eee;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: -12px;
+    background: #eee;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.form-actions {
+    &__btn {
+        padding: 10px 20px;
+        margin: 0px auto;
+    }
+}
+
+.fas {
+    color: #dc3545;
+}
+
+.logo {
+    width: 50%;
+    margin-top: -10px;
+    @include sp{
+        width: initial;
+        margin-top: initial;
+    }
+}
+
+.login, .logout {
+    position: relative;
+    right: -30px;
+}
+
+.breadcrumbs {
+    width: 1200px;
+    margin: 0px auto;
+    padding: 15px 25px 0;
+    display: flex;
+    align-items: center;
+  
+    @include ipad() {
+      width: 100%;
+    }
+  
+    @include sp() {
+      width: unset;
+      margin: initial;
+      padding: 0 15px;
+    }
+  
+    & > span {
+      margin: 0 7px;
+      font-size: 12px;
+      position: relative;
+      top: 2px;
+  
+      @include sp() {
+        top: 1px;
+      }
+  
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  
+    .post {
+      color: #333;
+    }
+  
+    a {
+      color: #777;
+      font-size: 12px;
+    }
+  }

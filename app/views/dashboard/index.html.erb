@@ -1,0 +1,92 @@
+<div class="search__nav">
+  <div class="search__form">
+    <%= render 'shared/search_form' %>
+  </div>
+</div>
+
+<main class="top">
+    <div class="l-inner">
+
+        <div class="top__mainContents">
+            <div>
+                <%= image_tag "title.png", alt: "", class: "title" %>
+            </div>
+            <div class="top__contents">
+                <table>
+                    <tbody>
+                        <% @posts.each do |post| %>
+                            <tr>
+                                <td>
+                                    <%= link_to user_path(post.user.id) do %>
+                                        <% if post.user.avatar.attached? %>
+                                            <%= image_tag(post.user.avatar, class:"avatar") %>
+                                        <% else %>
+                                            <%= image_tag "account.png", alt: "ロゴ", class: "avatar" %>
+                                        <% end %>
+                                    <% end %>
+                                </td>
+                                <!-- <td><%= link_to post.user.username, user_path(post.user.id), class: "" %></td> -->
+                                <td>
+                                    <div class="flex">
+                                        <%= format_date post.updated_at %> 
+                                        <%= link_to truncate_text(post.title, 10), post, class: "td-title" %>
+                                        <i class="far fa-folder icon--adjustment"></i>
+                                        <% if post.category %>
+                                            <span class="category"><%= post.category.name %><span>
+                                        <% end %>
+                                    </div>
+                                    <div>
+                                        <%= link_to truncate_text(post.body, 60), post, class: "pc-display" %>
+                                        <%= link_to truncate_text(post.body, 18), post, class: "sp-display" %>
+                                        <div class="flex">
+                                            <% if post.hashtags %>
+                                                <span class="tag"><%= post.hashtags %></span>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!--<td><%= format_date post.created_at %></td>-->
+                                <% if current_user %>
+                                <td>
+                                    <% if current_user.likes.exists?(post_id: post.id) %>
+                                        <i class="fas fa-heart"></i>
+                                    <% else %>
+                                        <%= link_to post_likes_path(post), method: :post do %>
+                                            <i class="far fa-heart"></i>
+                                        <% end %>
+                                    <% end %>
+                                </td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+
+            <%= paginate @posts %>
+            
+        </div><!--top__left-->
+
+        <div class="top__sidebar">
+            <a href="https://audiostock.jp/artists/52178" target="_blank" ><img src="https://audiostock.jp/assets/as_banner/banner_300_250_04.png" class="bnr" alt="AudiostockでBGM・効果音を販売中！" ></a>
+
+            <br>
+            <%= link_to "https://bit.ly/3MsLijJ" do %>
+                <%= image_tag "bnr2.png", alt: "", class: "bnr" %>
+            <% end %>
+            
+            <br>
+            <%= link_to "https://kurataaudio.store/" do %>
+                <%= image_tag "sale-bnr.png", alt: "", class: "bnr" %>
+            <% end %>
+
+            <br>
+            <%= link_to "https://kurataaudio.net/" do %>
+                <%= image_tag "production-bnr.png", alt: "", class: "bnr" %>
+            <% end %>
+            
+            
+        </div><!--top__right-->
+
+    </div><!--l-inner-->
+</main>

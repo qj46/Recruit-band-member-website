@@ -1,0 +1,7 @@
+<main class="infos l-inner">
+    <h2 class="session-manager-header">CSVインポート</h2>
+    <%= form_tag infos_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "インポート" %>
+    <% end %>
+</main>

@@ -1,0 +1,24 @@
+<main class="likes l-inner">
+    <h2 class="session-manager-header">いいね一覧</h2>
+    
+    <div class="likes__contents">
+        <table>
+            <thead>
+                <tr>
+                    <th>投稿者名</th>
+                    <th>タイトル</th>
+                    <th>本文</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @likes.each do |like| %>
+                    <tr>
+                        <td><%= link_to like.post.user.username, user_path(like.post.user.id), class: "" %></td>
+                        <td><%= link_to truncate_text(like.post.title, 40), like.post, class: "nav-link" %></td>
+                        <td><%= truncate_text(like.post.body, 40) %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</main>

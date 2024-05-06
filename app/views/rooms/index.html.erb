@@ -1,0 +1,23 @@
+<main class="rooms l-inner">
+    <h2 class="session-manager-header">チャット</h2>
+    
+    <div class="rooms__contents">
+        <table>
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>チャットルーム No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @rooms.each do |room| %>
+                    <tr>
+                        <td><%= format_date room.created_at %></td>
+                        <td><%= link_to room.id, room_path(room.id), class: "" %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    
+</main>

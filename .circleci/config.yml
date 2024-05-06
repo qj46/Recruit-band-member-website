@@ -1,0 +1,51 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.2
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.2.2
+      - image: selenium/standalone-chrome-debug:latest
+    steps:
+      - checkout
+      - ruby/install-deps
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+
+  test:
+    docker:
+      - image: cimg/ruby:3.2.2
+    steps:
+      - checkout
+      - ruby/install-deps
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      - run:
+          name: Run RSpec tests
+          command: |
+            mkdir /tmp/test-results
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build

@@ -1,0 +1,320 @@
+@charset "utf-8";
+
+//pc
+@mixin pc(){
+    @media (min-width: 767px) {
+        @content;
+    }
+}
+
+// sp
+@mixin sp(){
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+// ipad
+@mixin ipad(){
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        @content;
+    }
+}
+
+
+.lists {
+    &__contents {
+        @include sp{
+            overflow-x: scroll;
+        }
+    }
+
+    th:first-child, td:first-child{
+        width: 15%;
+        text-align: left;
+    }
+    th:nth-child(2), td:nth-child(2){
+        width: 60%;
+        text-align: left;
+    }
+    th:nth-child(3), td:nth-child(3){
+        width: 25%;
+        text-align: left;
+    }
+}
+
+.rooms {
+    &__contents {
+        @include sp{
+            overflow-x: scroll;
+        }
+    }
+    @include sp{
+        margin-top: 20vw;
+    }
+    thead {
+        background: #eee;
+    }
+    th:first-child, td:first-child{
+        width: 15%;
+        text-align: center;
+        @include sp{
+            width: initial;
+        }
+    }
+    td:nth-child(2){
+        width: 60%;
+        text-align: center;
+        @include sp{
+            width: initial;
+        }
+    }
+    td:nth-child(3){
+        width: 25%;
+        text-align: left;
+        @include sp{
+            width: initial;
+        }
+    }
+    .mycomment {
+        margin-bottom: 20px;
+
+        span {
+            background: #eee;
+            padding: 5px 20px;
+            border-radius: 50px;
+            position: relative;
+            top: 5px;
+        }
+    }
+
+    .new_message {
+        display: flex;
+    }
+
+    .form-control {
+        width: 90%;
+        line-height: 1.65;
+    }
+
+    &__btn {
+        height: 35px;
+        padding: 5px 30px;
+        color: #fff;
+    }
+}
+
+.likes {
+    &__contents {
+        @include sp{
+            overflow-x: scroll;
+        }
+    }
+    @include sp{
+        margin-top: 20vw;
+    }
+    thead {
+        background: #eee;
+    }
+    th:first-child, td:first-child{
+        width: 15%;
+        text-align: center;
+        @include sp{
+            width: initial;
+        }
+    }
+    td:nth-child(2){
+        width: 40%;
+        text-align: center;
+        @include sp{
+            width: initial;
+        }
+    }
+    td:nth-child(3){
+        width: 45%;
+        text-align: left;
+        @include sp{
+            width: initial;
+        }
+    }
+    .mycomment {
+        margin-bottom: 20px;
+
+        span {
+            background: #eee;
+            padding: 5px 20px;
+            border-radius: 50px;
+            position: relative;
+            top: 5px;
+        }
+    }
+
+}
+
+.infos {
+    width: 440px;
+
+    @include sp{
+        width: 100%;
+    }
+}
+
+.profile {
+    &__info {
+        display: flex;
+        align-items: center;
+        @include sp{
+            display: initial;
+        }
+    }
+
+    .l-inner {
+        width: 1250px;
+        display: flex;
+        margin-top: 50px;
+        @include sp{
+            width: initial;
+            display: initial;
+        }
+        @include ipad(){
+            width: 100%;
+        }
+    }
+
+    &__contents {
+        width: 70%;
+        @include sp{
+            width: 100%;
+            overflow-x: scroll;
+            padding: 10px;
+        }
+        @include ipad(){
+            width: 70%;
+        }
+    }
+
+    &__content {
+        padding: 3px 0;
+    }
+    &__contentItem {
+        margin: 0 15px 0 0;
+    }
+    .flex {
+        display: flex;
+    }
+
+    th:first-child, td:first-child{
+        width: 11%;
+        text-align: left;
+        @include sp{
+            width: 30%;
+        }
+    }
+    td:nth-child(2){
+        width: 100%;
+        text-align: left;
+        display: flex;
+        @include sp{
+            width: initial;
+        }
+    }
+    td:nth-child(3){
+        width: 25%;
+        @include sp{
+            width: initial;
+        }
+    }
+
+    &__sidebar {
+        width: 30%;
+        margin-left: 75px;
+        @include sp{
+            width: 100%;
+            margin-left: initial;
+            padding: 2vw;
+        }
+        @include ipad(){
+            width: 30%;
+        }
+    }
+}
+
+.posts {
+    &__info {
+        display: flex;
+        align-items: center;
+        @include sp{
+            display: initial;
+        }
+    }
+
+    .l-inner {
+        width: 1250px;
+        display: flex;
+        margin-top: 50px;
+        @include sp{
+            width: initial;
+            display: initial;
+        }
+        @include ipad(){
+            width: 100%;
+        }
+    }
+
+    &__contents {
+        width: 70%;
+        @include sp{
+            width: 100%;
+            overflow-x: scroll;
+            padding: 10px;
+        }
+        @include ipad(){
+            width: 70%;
+        }
+    }
+
+    &__content {
+        padding: 3px 0;
+    }
+    &__contentItem {
+        margin: 0 15px 0 0;
+    }
+    .flex {
+        display: flex;
+    }
+
+    th:first-child, td:first-child{
+        width: 11%;
+        text-align: left;
+        @include sp{
+            width: 30%;
+        }
+    }
+    td:nth-child(2){
+        width: 100%;
+        text-align: left;
+        display: flex;
+        @include sp{
+            width: initial;
+        }
+    }
+    td:nth-child(3){
+        width: 25%;
+        @include sp{
+            width: initial;
+        }
+    }
+
+    &__sidebar {
+        width: 30%;
+        margin-left: 75px;
+        @include sp{
+            width: 100%;
+            margin-left: initial;
+            padding: 2vw;
+        }
+        @include ipad(){
+            width: 30%;
+        }
+    }
+}

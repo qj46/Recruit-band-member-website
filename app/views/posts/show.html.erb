@@ -1,0 +1,46 @@
+<main class="posts">
+  <div class="l-inner">
+
+    <div class="posts__contents">
+      <h1><%= @post.title %></h1>
+      
+      <div class="posts__info">
+        <%= link_to user_path(@post.user.id) do %>
+          <% if @post.user.avatar.attached? %>
+              <%= image_tag(@post.user.avatar, class:"avatar__icon") %>
+          <% else %>
+              <%= image_tag "account.png", alt: "ロゴ", class: "avatar__icon" %>
+          <% end %>          
+        <% end %>
+        
+        <h2><%= truncate_text(@post.user.username, 80) if @post.user.username %> さん</h2>
+      </div>
+
+      <br>
+      <p><%= sanitize @post.body, tags: %w(br a), attributes: %w(href) %></p>
+
+    </div>
+
+    <div class="posts__sidebar">
+        <a href="https://audiostock.jp/artists/52178" target="_blank" ><img src="https://audiostock.jp/assets/as_banner/banner_300_250_04.png" class="bnr" alt="AudiostockでBGM・効果音を販売中！" ></a>
+
+        <br>
+        <%= link_to "https://bit.ly/3MsLijJ" do %>
+            <%= image_tag "bnr2.png", alt: "", class: "bnr" %>
+        <% end %>
+        
+        <br>
+        <%= link_to "https://kurataaudio.store/" do %>
+            <%= image_tag "sale-bnr.png", alt: "", class: "bnr" %>
+        <% end %>
+
+        <br>
+        <%= link_to "https://kurataaudio.net/" do %>
+            <%= image_tag "production-bnr.png", alt: "", class: "bnr" %>
+        <% end %>
+        
+        
+    </div><!--posts__sidebar-->
+
+  </div>
+</main>

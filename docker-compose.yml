@@ -1,0 +1,35 @@
+version: '3'
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    restart: always
+    depends_on:
+      - redis
+      - chrome
+    environment:
+      RAILS_ENV: development
+  chrome:
+     image: selenium/standalone-chrome:latest
+     ports:
+      - 4444:4444
+  sidekiq:
+    build: .
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379
+    command: bundle exec sidekiq
+    depends_on:
+      - web
+      - redis
+
+  redis:
+    image: redis

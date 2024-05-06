@@ -1,0 +1,28 @@
+<main class="rooms l-inner">
+
+  <h1>参加者</h1>
+  <ol>
+    <% @entries.each do |e| %>
+      <li><a href="/<%= e.user.id %>"><%= e.user.username %>さん</a></li>
+    <% end %>
+  </ol>
+
+  <br>
+  <%= form_for @message do |f| %>
+    <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70, :class=>"form-control" %>
+    <%= f.hidden_field :room_id, :value => @room.id %>
+    <%= f.submit "投稿する", :class=>"rooms__btn btn-primary" %>
+  <% end %>
+
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <strong><a href="/<%= m.user_id %>"><%= m.user.username %>さん</a></strong>
+      <p><%= format_date m.created_at %> <%= m.content %></p>
+      <hr>
+      <br>
+    <% end %>
+  <% else %>
+    <p class="text-center">メッセージはまだありません</p>
+  <% end %>
+
+</main>
